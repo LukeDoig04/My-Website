@@ -1,1 +1,31 @@
-<button type="button" onclick="window.open('https://lukedoig04.github.io/My-Website/Test_PDF.pdf');">Download PDF</button>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download PDF</title>
+</head>
+<body>
+  <button type="button" onclick="downloadPDF('https://lukedoig04.github.io/My-Website/Test_PDF.pdf');">Download PDF</button>
+
+  <script>
+    function downloadPDF(url) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.responseType = "blob";
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var blob = xhr.response;
+          var a = document.createElement("a");
+          a.href = window.URL.createObjectURL(blob);
+          a.download = "Test_PDF.pdf";
+          a.click();
+        } else {
+          // Handle error
+        }
+      };
+
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
